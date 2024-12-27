@@ -20,20 +20,14 @@ $db->exec("CREATE TABLE IF NOT EXISTS tasks (
     completed INTEGER DEFAULT 0
 )");
 
-// Create users table
+// Create users table with new columns
 $db->exec("CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL,
+    name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
-)");
-
-// Create password_resets table
-$db->exec("CREATE TABLE IF NOT EXISTS password_resets (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL,
-    reset_token TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    password TEXT NOT NULL,
+    reset_token TEXT,
+    reset_token_expiry DATETIME
 )");
 
 echo "Database and tables created successfully.";

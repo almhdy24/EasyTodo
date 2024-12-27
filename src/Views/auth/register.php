@@ -13,6 +13,16 @@
     <main class="auth-page">
         <section class="auth-form">
             <h2>Register</h2>
+            <?php
+            if (isset($_SESSION["error"])) {
+              echo "<p class='error-message'>{$_SESSION["error"]}</p>";
+              unset($_SESSION["error"]);
+            }
+            if (isset($_SESSION["success"])) {
+              echo "<p class='success-message'>{$_SESSION["success"]}</p>";
+              unset($_SESSION["success"]);
+            }
+            ?>
             <form action="/register" method="POST">
                 <input type="text" id="name" name="name" placeholder="Name" required>
                 <input type="email" id="email" name="email" placeholder="Email" required>

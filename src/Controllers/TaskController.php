@@ -5,12 +5,13 @@ use EasyTodo\Models\Task;
 
 class TaskController extends BaseController
 {
-  public function __construct() {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login');
-            exit();
-        }
+  public function __construct()
+  {
+    if (!isset($_SESSION["name"])) {
+      header("Location: /login");
+      exit();
     }
+  }
   public function index()
   {
     $tasks = Task::getAll();

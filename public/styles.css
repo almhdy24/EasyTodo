@@ -19,6 +19,37 @@ header {
     color: white;
     padding: 1rem;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-message {
+    margin-right: 1rem;
+}
+
+.logout-form button {
+    padding: 0.5rem 1rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
+}
+
+.logout-form button:hover {
+    background: #c0392b;
+    transform: scale(1.05);
 }
 
 main {
@@ -29,8 +60,7 @@ main {
     padding: 1rem;
 }
 
-.login-page,
-.register-page,
+.auth-page,
 .tasks-page {
     display: flex;
     justify-content: center;
@@ -38,36 +68,55 @@ main {
     width: 100%;
 }
 
-.login-form,
-.register-form,
+.auth-form,
 .tasks-list {
     background: white;
     padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 320px;
     text-align: center;
+    transition: transform 0.2s;
 }
 
-.login-form h2,
-.register-form h2,
+.auth-form:hover,
+.tasks-list:hover {
+    transform: scale(1.02);
+}
+
+.auth-form h2,
 .tasks-list h2 {
+    margin-bottom: 1rem;
+    color: #4caf50;
+}
+
+.error-message {
+    color: #e74c3c;
     margin-bottom: 1rem;
 }
 
-.login-form input,
-.register-form input {
+.success-message {
+    color: #4caf50;
+    margin-bottom: 1rem;
+}
+
+.auth-form input {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     margin: 0.5rem 0;
     border: 1px solid #ddd;
     border-radius: 5px;
+    transition: border-color 0.3s;
 }
 
-.login-form button,
-.register-form button,
+.auth-form input:focus {
+    border-color: #4caf50;
+    outline: none;
+}
+
+.auth-form button,
 .create-task {
-    padding: 0.5rem;
+    padding: 0.75rem;
     background: #4caf50;
     color: white;
     border: none;
@@ -78,25 +127,29 @@ main {
     display: block;
     margin: 1rem 0;
     text-decoration: none;
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
 }
 
-.login-form button:hover,
-.register-form button:hover,
+.auth-form button:hover,
 .create-task:hover {
     background: #45a049;
+    transform: scale(1.05);
 }
 
-.links {
-    display: flex;
-    justify-content: space-between;
+.auth-form p {
+    margin-top: 1rem;
 }
 
-.links a {
+.auth-form a {
     color: #4caf50;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
-.links a:hover {
+.auth-form a:hover {
+    color: #388e3c;
     text-decoration: underline;
 }
 
@@ -106,12 +159,17 @@ main {
 }
 
 .tasks-list .task-item {
-    padding: 0.5rem;
+    padding: 0.75rem;
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
 }
 
 .tasks-list .task-item:last-child {
     border-bottom: none;
+}
+
+.tasks-list .task-item:hover {
+    background: #f1f1f1;
 }
 
 .create-task-page {
@@ -124,38 +182,56 @@ main {
 .create-task-form {
     background: white;
     padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 320px;
     text-align: center;
+    transition: transform 0.2s;
+}
+
+.create-task-form:hover {
+    transform: scale(1.02);
 }
 
 .create-task-form h2 {
     margin-bottom: 1rem;
+    color: #4caf50;
 }
 
 .create-task-form input,
 .create-task-form textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     margin: 0.5rem 0;
     border: 1px solid #ddd;
     border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.create-task-form input:focus,
+.create-task-form textarea:focus {
+    border-color: #4caf50;
+    outline: none;
 }
 
 .create-task-form button {
-    padding: 0.5rem;
+    padding: 0.75rem;
     background: #4caf50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
 }
 
 .create-task-form button:hover {
     background: #45a049;
+    transform: scale(1.05);
 }
+
 .delete-form {
     display: inline-block;
 }
@@ -166,9 +242,13 @@ main {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.75rem;
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
 }
 
 .delete-form button:hover {
     background: #c0392b;
+    transform: scale(1.05);
 }

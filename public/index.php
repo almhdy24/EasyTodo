@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // Start output buffering
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use EasyTodo\Controllers\TaskController;
@@ -72,7 +74,7 @@ $router->addRoute('POST', '/register', function() {
     $controller->register($_POST);
 });
 
-$router->addRoute('GET', '/logout', function() {
+$router->addRoute('POST', '/logout', function() {
     $controller = new AuthController();
     $controller->logout();
 });
@@ -100,3 +102,5 @@ $router->addRoute('POST', '/password/reset', function() {
 
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+
+ob_end_flush(); // Send the buffered output to the browser

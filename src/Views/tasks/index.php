@@ -9,6 +9,14 @@
 <body>
     <header>
         <h1>EasyTodo</h1>
+        <div class="header-right">
+            <span class="welcome-message">Welcome, <?php echo htmlspecialchars(
+              $_SESSION["name"]
+            ); ?>!</span>
+            <form action="/logout" method="POST" class="logout-form">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
     </header>
     <main class="tasks-page">
         <section class="tasks-list">
@@ -18,8 +26,12 @@
                 <ul>
                     <?php foreach ($tasks as $task): ?>
                         <li class="task-item">
-                            <strong><?php echo htmlspecialchars($task->getTitle()); ?></strong>
-                            <p><?php echo htmlspecialchars($task->getDescription()); ?></p>
+                            <strong><?php echo htmlspecialchars(
+                              $task->getTitle()
+                            ); ?></strong>
+                            <p><?php echo htmlspecialchars(
+                              $task->getDescription()
+                            ); ?></p>
                             <form action="/tasks/delete/<?php echo $task->getId(); ?>" method="POST" class="delete-form">
                                 <button type="submit">Delete</button>
                             </form>
