@@ -1,0 +1,22 @@
+{
+    "name": "almhdy/easy-todos",
+    "description": "EasyTodo is a simple and efficient To-Do list application built with native PHP. It allows users to effortlessly create, manage, and track tasks. With a user-friendly interface and straightforward features, EasyTodo makes task organization a breeze, helping you stay productive and focused.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "EasyTodo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "almhdy24",
+            "email": "almhdybdallh24@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "swiftmailer/swiftmailer": "^6.3"
+    }
+}
