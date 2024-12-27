@@ -10,7 +10,7 @@ $dotenv = Dotenv::createImmutable(__DIR__ . "/src/Config/");
 $dotenv->load();
 
 // Initialize the database connection
-$db = Database::init();
+$db = Database::getConnection();
 
 // Create tasks table
 $db->exec("CREATE TABLE IF NOT EXISTS tasks (
@@ -32,7 +32,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS users (
 $db->exec("CREATE TABLE IF NOT EXISTS password_resets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT NOT NULL,
-    token TEXT NOT NULL,
+    reset_token TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 )");
 

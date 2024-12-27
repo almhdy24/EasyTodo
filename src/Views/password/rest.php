@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - EasyTodo</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Reset Password</h1>
-    <form action="/password/reset/confirm" method="POST">
-        <label for="token">Token:</label>
-        <input type="text" id="token" name="token" required>
-        <br>
-        <label for="password">New Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Reset Password</button>
-    </form>
+    <header>
+        <h1>EasyTodo</h1>
+    </header>
+    <main class="auth-page">
+        <section class="auth-form">
+            <h2>Reset Password</h2>
+            <form action="/password/reset" method="POST">
+                <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
+                <input type="password" name="password" placeholder="New Password" required>
+                <button type="submit">Reset Password</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

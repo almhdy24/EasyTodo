@@ -19,6 +19,7 @@
                 <button type="submit">Login</button>
             </form>
             <p>Don't have an account? <a href="/register">Register here</a></p>
+            <p>Forgot your password? <a href="/password/request">Reset it here</a></p>
         </section>
     </main>
 </body>
