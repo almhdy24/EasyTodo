@@ -6,7 +6,6 @@ use EasyTodo\Models\Task;
 class TaskController extends BaseController {
     public function index() {
         $tasks = Task::getAll();
-        var_dump($tasks); // Add this line to check the fetched tasks
         $this->render('tasks/index', ['tasks' => $tasks]);
     }
 

@@ -6,6 +6,7 @@ use EasyTodo\Controllers\TaskController;
 use EasyTodo\Controllers\PasswordResetController;
 use EasyTodo\Controllers\UserController;
 use EasyTodo\Config\Database;
+use EasyTodo\Router;
 use Dotenv\Dotenv;
 
 session_start();
@@ -17,65 +18,63 @@ $dotenv->load();
 // Initialize the database
 Database::init();
 
-// Get the request URI and method
-$requestUri = $_SERVER["REQUEST_URI"];
-$requestMethod = $_SERVER["REQUEST_METHOD"];
+// Initialize the router
+$router = new Router();
 
-// Basic routing mechanism
-switch ($requestUri) {
-  case "/":
-  case "/tasks":
+// Define routes
+$router->addRoute('GET', '/', function() {
+    require '../src/Views/home.php';
+});
+
+$router->addRoute('GET', '/tasks', function() {
     $controller = new TaskController();
-    if ($requestMethod === "GET") {
-      $controller->index();
-    } elseif ($requestMethod === "POST") {
-      $controller->create($_POST);
-    }
-    break;
+    $controller->index();
+});
 
-  case "/tasks/create":
+$router->addRoute('POST', '/tasks', function() {
     $controller = new TaskController();
-    if ($requestMethod === "GET") {
-      $controller->createForm();
-    } elseif ($requestMethod === "POST") {
-      $controller->create($_POST);
-    }
-    break;
+    $controller->create($_POST);
+});
 
-  case "/password/reset":
+$router->addRoute('GET', '/tasks/create', function() {
+    $controller = new TaskController();
+    $controller->createForm();
+});
+
+$router->addRoute('POST', '/tasks/create', function() {
+    $controller = new TaskController();
+    $controller->create($_POST);
+});
+
+$router->addRoute('POST', '/password/reset', function() {
     $controller = new PasswordResetController();
-    if ($requestMethod === "POST") {
-      $controller->requestReset($_POST["email"]);
-    }
-    break;
+    $controller->requestReset($_POST["email"]);
+});
 
-  case "/password/reset/confirm":
+$router->addRoute('POST', '/password/reset/confirm', function() {
     $controller = new PasswordResetController();
-    if ($requestMethod === "POST") {
-      $controller->reset($_POST["token"], $_POST["password"]);
-    }
-    break;
+    $controller->reset($_POST["token"], $_POST["password"]);
+});
 
-  case "/login":
+$router->addRoute('GET', '/login', function() {
     $controller = new UserController();
-    if ($requestMethod === "GET") {
-      $controller->loginForm();
-    } elseif ($requestMethod === "POST") {
-      $controller->login($_POST);
-    }
-    break;
+    $controller->loginForm();
+});
 
-  case "/register":
+$router->addRoute('POST', '/login', function() {
     $controller = new UserController();
-    if ($requestMethod === "GET") {
-      $controller->registerForm();
-    } elseif ($requestMethod === "POST") {
-      $controller->register($_POST);
-    }
-    break;
+    $controller->login($_POST);
+});
 
-  default:
-    http_response_code(404);
-    echo "Page not found";
-    break;
-}
+$router->addRoute('GET', '/register', function() {
+    $controller = new UserController();
+    $controller->registerForm();
+});
+
+$router->addRoute('POST', '/register', function() {
+    $controller = new UserController();
+    $controller->register($_POST);
+});
+
+// Dispatch the request
+$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

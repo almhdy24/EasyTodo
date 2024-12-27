@@ -1,0 +1,164 @@
+/* styles.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background: #4caf50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.login-page,
+.register-page,
+.tasks-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-form,
+.register-form,
+.tasks-list {
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.login-form h2,
+.register-form h2,
+.tasks-list h2 {
+    margin-bottom: 1rem;
+}
+
+.login-form input,
+.register-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-form button,
+.register-form button,
+.create-task {
+    padding: 0.5rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin: 1rem 0;
+    text-decoration: none;
+}
+
+.login-form button:hover,
+.register-form button:hover,
+.create-task:hover {
+    background: #45a049;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.tasks-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tasks-list .task-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tasks-list .task-item:last-child {
+    border-bottom: none;
+}
+
+.create-task-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.create-task-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.create-task-form h2 {
+    margin-bottom: 1rem;
+}
+
+.create-task-form input, .create-task-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.create-task-form button {
+    padding: 0.5rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.create-task-form button:hover {
+    background: #45a049;
+}
+Public code references from 5 repositories
+Summary
+Updated the create.php file to use modern CSS.
+Ensured consistent styling with other parts of the application using styles.css.
+By following these steps, you can ensure that the create.php view in your EasyTodo application has a modern and responsive design. Let me know if you need any further assistance!
+
+almhdy24/EasyTodo

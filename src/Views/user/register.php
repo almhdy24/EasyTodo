@@ -2,22 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EasyTodo</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Register</h1>
-    <form action="/register" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Register</button>
-    </form>
-    <a href="/login">Login</a>
+    <header>
+        <h1>EasyTodo</h1>
+    </header>
+    <main class="register-page">
+        <section class="register-form">
+            <h2>Register</h2>
+            <form action="/register" method="POST">
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <div class="links">
+                <a href="/login">Login</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
