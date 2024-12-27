@@ -3,8 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use EasyTodo\Controllers\TaskController;
-use EasyTodo\Controllers\PasswordResetController;
-use EasyTodo\Controllers\UserController;
+use EasyTodo\Controllers\AuthController;
 use EasyTodo\Config\Database;
 use EasyTodo\Router;
 use Dotenv\Dotenv;
@@ -22,59 +21,61 @@ Database::init();
 $router = new Router();
 
 // Define routes
-$router->addRoute('GET', '/', function() {
-    require '../src/Views/home.php';
+$router->addRoute("GET", "/", function () {
+  require "../src/Views/home.php";
 });
 
-$router->addRoute('GET', '/tasks', function() {
-    $controller = new TaskController();
-    $controller->index();
+$router->addRoute("GET", "/tasks", function () {
+  $controller = new TaskController();
+  $controller->index();
 });
 
-$router->addRoute('POST', '/tasks', function() {
-    $controller = new TaskController();
-    $controller->create($_POST);
+$router->addRoute("POST", "/tasks", function () {
+  $controller = new TaskController();
+  $controller->create($_POST);
 });
 
-$router->addRoute('GET', '/tasks/create', function() {
-    $controller = new TaskController();
-    $controller->createForm();
+$router->addRoute("GET", "/tasks/create", function () {
+  $controller = new TaskController();
+  $controller->createForm();
 });
 
-$router->addRoute('POST', '/tasks/create', function() {
-    $controller = new TaskController();
-    $controller->create($_POST);
+$router->addRoute("POST", "/tasks/create", function () {
+  $controller = new TaskController();
+  $controller->create($_POST);
 });
 
-$router->addRoute('POST', '/password/reset', function() {
-    $controller = new PasswordResetController();
-    $controller->requestReset($_POST["email"]);
+// Add delete route
+$router->addRoute("POST", "/tasks/delete/(\d+)", function ($id) {
+  $controller = new TaskController();
+  $controller->delete($id);
 });
 
-$router->addRoute('POST', '/password/reset/confirm', function() {
-    $controller = new PasswordResetController();
-    $controller->reset($_POST["token"], $_POST["password"]);
+// Authentication routes
+$router->addRoute("GET", "/login", function () {
+  $controller = new AuthController();
+  $controller->showLoginForm();
 });
 
-$router->addRoute('GET', '/login', function() {
-    $controller = new UserController();
-    $controller->loginForm();
+$router->addRoute("POST", "/login", function () {
+  $controller = new AuthController();
+  $controller->login($_POST);
 });
 
-$router->addRoute('POST', '/login', function() {
-    $controller = new UserController();
-    $controller->login($_POST);
+$router->addRoute("GET", "/register", function () {
+  $controller = new AuthController();
+  $controller->showRegisterForm();
 });
 
-$router->addRoute('GET', '/register', function() {
-    $controller = new UserController();
-    $controller->registerForm();
+$router->addRoute("POST", "/register", function () {
+  $controller = new AuthController();
+  $controller->register($_POST);
 });
 
-$router->addRoute('POST', '/register', function() {
-    $controller = new UserController();
-    $controller->register($_POST);
+$router->addRoute("GET", "/logout", function () {
+  $controller = new AuthController();
+  $controller->logout();
 });
 
 // Dispatch the request
-$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+$router->dispatch($_SERVER["REQUEST_METHOD"], $_SERVER["REQUEST_URI"]);

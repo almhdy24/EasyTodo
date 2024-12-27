@@ -25,10 +25,10 @@ class Database {
         if (self::$instance === null) {
             self::$instance = new self();
         }
-        return self::$instance->getConnection();
+        return self::$instance;
     }
 
-    public function getConnection() {
-        return $this->connection;
+    public static function getConnection() {
+        return self::init()->connection;
     }
 }

@@ -10,18 +10,15 @@
     <header>
         <h1>EasyTodo</h1>
     </header>
-    <main class="login-page">
-        <section class="login-form">
+    <main class="auth-page">
+        <section class="auth-form">
             <h2>Login</h2>
             <form action="/login" method="POST">
                 <input type="email" id="email" name="email" placeholder="Email" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
             </form>
-            <div class="links">
-                <a href="/register">Register</a>
-                <a href="/password/reset">Forgot Password?</a>
-            </div>
+            <p>Don't have an account? <a href="/register">Register here</a></p>
         </section>
     </main>
 </body>

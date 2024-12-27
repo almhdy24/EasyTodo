@@ -20,6 +20,9 @@
                         <li class="task-item">
                             <strong><?php echo htmlspecialchars($task->getTitle()); ?></strong>
                             <p><?php echo htmlspecialchars($task->getDescription()); ?></p>
+                            <form action="/tasks/delete/<?php echo $task->getId(); ?>" method="POST" class="delete-form">
+                                <button type="submit">Delete</button>
+                            </form>
                         </li>
                     <?php endforeach; ?>
                 </ul>
